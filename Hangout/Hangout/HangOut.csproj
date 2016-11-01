@@ -384,7 +384,9 @@
     <Content Include="Content\images\Backup\The_residency-Hotel.jpg" />
     <Content Include="Content\images\Backup\user.png" />
     <Content Include="Content\images\Backup\user_page_full_width.jpg" />
-    <Content Include="Content\images\Hotel.jpg" />
+    <Content Include="Content\images\Hotel.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
