@@ -1,0 +1,20 @@
+﻿@model HangOut.Models.FoodViewModel
+@{
+    string selectedValue = "1";
+    if (Model != null && Model.RestType == 2)
+    {
+        selectedValue = "2";
+    }
+    var lst = new List<SelectListItem>()
+{
+
+        new SelectListItem() {Text = "Fast Food", Value = "1", Selected = selectedValue == "1"},
+        new SelectListItem() {Text = "Continental", Value = "2",Selected = selectedValue == "1"}
+};
+}
+<div class="form-group">
+    @Html.LabelFor(model => model.RestType, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.RestType, lst, null, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+</div>

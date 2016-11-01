@@ -1,0 +1,75 @@
+﻿@using WebGrease.Css.Ast
+@model IEnumerable<HangOut.Models.PlaceViewModel>
+
+@if (Html.DoesViewExist("HospitalType") && Request.IsAuthenticated)
+{
+    @section HospitalType
+    {
+        @Html.Partial("HospitalType")
+    }
+
+}
+@if (Html.DoesViewExist("FoodFilters"))
+{
+    @section FoodFilters
+    {
+        @Html.Partial("FoodFilters")
+    }
+
+}
+
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<div class="row blog-list">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-12">
+            <div class="row blog-item">
+                <div class="col-sm-12 blog-image col-p0">
+                    <a href="@Url.Action("Details", new {id = item.Id})">
+                        <img src="@Url.Content($"~/Content/{ViewBag.ControllerName}/{item.Name}.jpg  ")" alt="@item.Name" />
+                    </a>
+                </div>
+                <div class="col-sm-12 blog-caption">
+                    <h3 class="post-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <a href="@Url.Action("Edit", new {id = item.Id})" class="">Edit</a>
+                                <a href="@Url.Action("Delete", new {id = item.Id})" class="">Delete</a>
+                            </div>
+                            <div class="pull-right">
+                                <i class="fa fa-camera post-format"></i>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    @if (ViewBag.PageCount > 0)
+    {
+        <div class="col-sm-12">
+            <ul class="pagination pagination-2 dark">
+                @{
+                    int startPageNumber = 5 * (ViewBag.CurrentPageNumber / 5);
+                }
+                <li class=""><a href="@Url.Action("Index", new {pageNumber = Math.Max(0,startPageNumber-5)})"><i class="fa fa-chevron-left"></i></a></li>
+                @for (int i = startPageNumber; i <= Math.Min(startPageNumber + 5, ViewBag.PageCount); i++)
+                {
+                    var activeClass = i == ViewBag.CurrentPageNumber ? "active" : "";
+                    <li class="@activeClass">@Html.ActionLink((i + 1).ToString(), "Index", new { pageNumber = i })</li>
+                }
+                <li><a href="@Url.Action("Index", new {pageNumber = Math.Min(ViewBag.PageCount, startPageNumber + 5)})"><i class="fa fa-chevron-right"></i></a></li>
+            </ul>
+        </div>
+                    }
+</div>

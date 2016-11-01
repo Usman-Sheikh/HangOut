@@ -1,0 +1,50 @@
+﻿@model HangOut.Models.Transport
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transport</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransportType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransportType.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

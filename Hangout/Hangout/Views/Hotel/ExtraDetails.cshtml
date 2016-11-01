@@ -1,0 +1,8 @@
+﻿@model HangOut.Models.HotelViewModel
+
+<div class="row">
+    @Html.LabelFor(model => Model.DailyRent, htmlAttributes: new { @class = "col-xs-3" })
+    <div class="col-xs-09">
+        @Html.DisplayFor(model => Model.DailyRent, new { htmlAttributes = new { @class = "" } })
+    </div>
+</div>

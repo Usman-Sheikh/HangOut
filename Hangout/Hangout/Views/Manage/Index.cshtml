@@ -1,0 +1,36 @@
+﻿@model HangOut.Models.IndexViewModel
+@{
+    ViewBag.Title = "Contact Information";
+}
+<div class="row">
+    <div class="col-sm-5 xs-box3">
+        <h3 class="title-small br-bottom">Contact informations</h3>
+        <ul>
+            <li>First Name: <span>@Model.FirstName</span></li>
+            <li>Last Name: <span>@Model.LastName</span></li>
+            <li>Phone Number: <span>@Model.PhoneNumber</span></li>
+            <li>Email: <span><a href="mailto:@Model.Email">@Model.Email</a></span></li>
+        </ul>
+    </div>
+    <div class="col-sm-4">
+        <h3 class="title-small br-bottom">Shipping Address</h3>
+        <ul>
+            <li>Address: <span>@Model.Address</span></li>
+            <li>Zip/Postal Code: <span>@Model.ZipCode</span></li>
+            <li>City: <span>@Model.City</span></li>
+            <li>Country: <span>@Model.Country</span></li>
+        </ul>
+    </div>
+</div>
+@Html.ActionLink("Edit your details", "Edit")
+<div class="row">
+    
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Create", "SetPassword")
+            }
+</div>

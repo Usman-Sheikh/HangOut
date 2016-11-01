@@ -1,0 +1,21 @@
+﻿@model HangOut.Models.HospitalViewModel
+@{
+    bool isPublic = false;
+    if (Model != null && Model.IsPublic)
+    {
+        isPublic = Model.IsPublic;
+    }
+
+    var lst = new List<SelectListItem>()
+    {
+        new SelectListItem() {Text = "Yes", Value = "True", Selected = isPublic},
+        new SelectListItem() {Text = "No", Value = "False"}
+    };
+}
+<div class="form-group">
+    @Html.LabelFor(model => model.IsPublic, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.IsPublic, lst, null, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+</div>
+

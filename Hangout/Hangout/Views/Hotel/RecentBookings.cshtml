@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HangOut.Models.BookingViewModel>
+
+<h3 class="blog-post-title">Recent Bookings</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckinDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckoutDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfChildren)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfAdults)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingConfirmed)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckinDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckoutDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfChildren)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfAdults)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfRooms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingConfirmed)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+</table>

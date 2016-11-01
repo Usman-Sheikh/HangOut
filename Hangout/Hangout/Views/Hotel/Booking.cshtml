@@ -1,0 +1,54 @@
+﻿@model HangOut.Models.HotelViewModel
+
+@using (Html.BeginForm("SaveBooking","Hotel"))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="PlaceId" value="@Model.Id"/>
+    <script type="text/javascript">
+    </script>
+    <div class="sidebar-widget">
+        <h3 class="sidebar-title br-bottom">Booking</h3>
+        <div class="row">
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker6'>
+                        <input type='text' name="CheckinDate" class="form-control datepicker" placeholder="Check In Date" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker7'>
+                        <input type='text' name="CheckoutDate" class="form-control datepicker" placeholder="Check Out Date" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <input type='text' name="NumberOfChildren" class="" placeholder="Children" />
+                    <i class="fa fa-child fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <input type='text' name="NumberOfAdults" class="" placeholder="Persons" />
+                    <i class="fa fa-male fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class='col-md-12'>
+                <div class="form-group">
+                    <input type='text' name="NumberOfRooms" class="" placeholder="Rooms" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" value="Book Now" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}

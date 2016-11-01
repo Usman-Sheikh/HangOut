@@ -1,0 +1,8 @@
+﻿@model HangOut.Models.HospitalViewModel
+
+<div class="row">
+    @Html.LabelFor(model => Model.IsPublic, htmlAttributes: new { @class = "col-xs-3" })
+    <div class="col-xs-09">
+        @Html.DisplayFor(model => Model.IsPublic, new { htmlAttributes = new { @class = "" } })
+    </div>
+</div>

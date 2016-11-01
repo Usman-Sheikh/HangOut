@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ae414fa6016e4f63ba6ac2fd3a649356" Name="Diagram1">
+        <EntityTypeShape EntityType="HangOutModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.AspNetRole" Width="1.5" PointX="3.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.AspNetUser" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Booking" Width="1.5" PointX="8.25" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.City" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Clinic" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Education" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Hospital" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Hotel" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Laboratory" Width="1.5" PointX="5.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Pharmacy" Width="1.5" PointX="5.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Place" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.PlaceFacility" Width="1.5" PointX="5.25" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.RealEstate" Width="1.5" PointX="5.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Resturant" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.ResturantType" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Review" Width="1.5" PointX="8.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Shopping" Width="1.5" PointX="5.25" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.Transport" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.TransportType" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HangOutModel.UserInfo" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="HangOutModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Bookings_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Reviews_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_UserInfo_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Bookings_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Place_City" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Transport_City" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Transport_City1" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Clinic_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Education_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Hospital_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Hotel_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Laboratory_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Pharmacy_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_PlaceFacilities_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_RealEstate_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Resturant_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Reviews_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Shopping_Place" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Resturant_ResturantType" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.FK_Transport_TransportType" ManuallyRouted="false" />
+        <AssociationConnector Association="HangOutModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

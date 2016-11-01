@@ -1,0 +1,34 @@
+﻿@using Microsoft.Ajax.Utilities
+@using WebGrease.Css.Extensions
+@model IEnumerable<HangOut.Models.PlaceViewModel>
+@{
+    List<SelectListItem> townList = new List<SelectListItem>();
+    townList.AddRange(ViewBag.CityList);
+
+    List<SelectListItem> foodType = new List<SelectListItem>()
+    {
+        new SelectListItem() {Text = "Fast Food", Value = "1"},
+        new SelectListItem() {Text = "Continental", Value = "2"},
+    };
+    var v = foodType.Find(x => x.Value == ViewBag.SelectedFoodFilter);
+    if (v != null)
+    {
+        v.Selected = true;
+    }
+    var v2 = townList.Find(x => x.Value == ViewBag.SelectedTownFilter);
+    if (v2 != null)
+    {
+        v2.Selected = true;
+    }
+}
+
+<script type="text/javascript">
+    function refreshFilter() {
+        document.getElementById('foodFilterForm').submit();
+    }
+</script>
+@using (Html.BeginForm("Index", "Food", FormMethod.Get, new {id = "foodFilterForm"}))
+{
+    @Html.DropDownList("townFilter", townList, "Search By Town", new {onchange = "refreshFilter();"})
+    @Html.DropDownList("foodFilter", foodType, "Search By Type", new { onchange = "refreshFilter();" })
+}

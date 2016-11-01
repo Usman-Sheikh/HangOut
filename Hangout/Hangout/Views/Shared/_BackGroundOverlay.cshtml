@@ -1,0 +1,21 @@
+﻿@{
+    var imageName = ViewContext.RouteData.GetRequiredString("controller");
+    if (string.IsNullOrEmpty(imageName))
+    {
+        imageName = "index";
+    }
+    if (imageName == "Transports")
+    {
+        string transType = Request["transType"];
+        switch (transType)
+        {
+            case "1":
+                imageName = "ByAir";
+                break;
+            case "2":
+                imageName = "ByBus";
+                break;
+        }
+    }
+}
+

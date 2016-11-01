@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HangOut.Models.Transport>
+
+@{
+    ViewBag.Title = "Schedule";
+}
+<h3>@ViewBag.TransTypeName</h3>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", new { transType = ViewBag.TransType })
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Departure From")
+        </th>
+        <th>
+            @Html.DisplayName("Departure To")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+@if (User.IsInRole("admin"))
+{
+    <th></th>
+}
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City1.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            @if (User.IsInRole("admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
+        </tr>
+    }
+
+</table>

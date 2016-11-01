@@ -1,0 +1,86 @@
+﻿
+<div class="h-wrapper">
+    <header class="header-wrapper header-transparent sticky-top">
+        <div id="" class="sticky-wrapper">
+            <div class="main-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                           <img src="~/Content/images/HOL.png"/>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <marquee style="font-size:15px;text-transform:uppercase;color:#E4F1FE;"><b><i>Hnagout In Lahore , Project Supervisor "Madam Naila Summer Naaz" Department of IT and computer sciences, University Of lahore.</i></b></marquee>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <nav class="navbar-left">
+                                <ul class="menu menu-light">
+                                    <li class="first">
+                                        @Html.ActionLink("Home", "Index", "Home")
+                                    </li>
+                                    <li>
+                                        <a href="">Living</a>
+                                        <ul class="submenu">
+                                            <li>@Html.ActionLink("Hotels", "Index", "Hotel")</li>
+                                            <li>@Html.ActionLink("Real Estate", "Index", "RealEstate")</li>
+
+                                        </ul>
+
+                                    </li>
+                                    <li>
+                                        <a href="">Transportation</a>
+
+                                        <ul class="submenu">
+                                            <li>@Html.ActionLink("By Air", "Index", "Transports", new { transType = 1},null)</li>
+                                            <li>@Html.ActionLink("By Bus", "Index", "Transports", new { transType = 2 },null)</li>
+                                            <li>@Html.ActionLink("By Taxi", "Index", "Transports", new { transType = 3 },null)</li>
+                                            <li>@Html.ActionLink("By Train", "Index", "Transports", new { transType = 4 },null)</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="">Health</a>
+                                        <ul class="submenu">
+                                            <li>@Html.ActionLink("Hospitals", "Index", "Hospital")</li>
+                                            <li>@Html.ActionLink("Clinics", "Index", "Clinic")</li>
+                                            <li>@Html.ActionLink("Medical Stores and Pharmacy", "Index", "Pharmacy")</li>
+                                            <li>@Html.ActionLink("Laboratories", "Index", "Laboratory")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Food", "Index", "Food")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Shopping", "Index", "Shopping")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Education", "Index", "Education")
+                                    </li>
+                                    <li>
+                                        <a href="">Others</a>
+                                        <ul class="submenu">
+                                            <li>@Html.ActionLink("Traditions","Traditions","Home")</li>
+                                            <li>@Html.ActionLink("Night at Lahore", "Nightatlahore", "Home")</li>
+                                            <li>@Html.ActionLink("Historicals", "Historicals", "Home")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("About Us","About","Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Contact Us","Contact","Home")
+                                    </li>
+                                        @Html.Partial("_LoginPartial")
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="push-top"></div>
+
+

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+
+</head>
+<body>
+    <div id="preloader" style="display: none;">
+        <div id="status" style="display: none;">&nbsp;</div>
+    </div>
+    <div id="wrapper">
+
+        @Html.Partial("~/Views/Shared/_TopMenu.cshtml")
+
+        @Html.Partial("~/Views/Shared/_BackgroundOverlay.cshtml")
+        <section class="section-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-9 col-md-push-3 space-left push-off">
+                        @RenderBody()
+                    </div>
+                    <div class="col-sm-4 col-md-3 col-md-pull-9 col-sm-pull-8 pull-off">
+                        <aside class="sidebar">
+                            @RenderSection("Booking", false)
+                            @RenderSection("HospitalType", false)
+                            @RenderSection("FoodFilters", false)
+
+
+                            <div class="sidebar-widget">
+                                <h3 class="sidebar-title br-bottom">Get social</h3>
+                                <ul class="sidebar-socials">
+                                    <li><a href="https://twitter.com/hangoutInlahore" target="_blank"><i class="fa fa-twitter"></i> Follow us</a></li>
+                                    <li><a href="https://www.facebook.com/hangout.inlahore" target="_blank"><i class="fa fa-facebook"></i> Like us</a> </li>
+                                    <li><a href="https://www.instagram.com/hangoutinlahore/" target="_blank"><i class="fa fa-instagram"></i> Subscribe</a> </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="sidebar-widget">
+                                <h3 class="sidebar-title br-bottom">Ads</h3>
+                                <div class="row mb10">
+                                    <div class="col-xs-12">
+                                        <a href=""><img src="~/Content/images/750x400.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="row col-p5">
+                                    <div class="col-xs-6">
+                                        <a href=""><img src="~/Content/images/300x300.jpg" alt=""></a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a href=""><img src="~/Content/images/300x300.jpg" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer-wrapper footer-bg">
+            <div class="container">
+                <div class="row col-p30">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">Hangout In Lahore</h3>
+                            <ul class="footer-links clearfix">
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Hotel", "Index", "Hotel")</li>
+                                <li>@Html.ActionLink("Hospital", "Index", "Hospital")</li>
+                                <li>@Html.ActionLink("Food", "Index", "Food")</li>
+                                <li>@Html.ActionLink("Shopping", "Index", "Shopping")</li>
+                                <li>@Html.ActionLink("Education", "Index", "Education")</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">Get social</h3>
+                            <ul class="footer-social clearfix">
+                                <li><a href="https://twitter.com/hangoutInlahore" target="_blank" data-toggle="tooltip" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.facebook.com/hangout.inlahore" target="_blank" data-toggle="tooltip" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.instagram.com/hangoutinlahore/" target="_blank" data-toggle="tooltip" title="" data-original-title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-sm-push-6 col-md-push-4 xs-box">
+
+                        <div id="mc_embed_signup">
+
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-sm-pull-6 col-md-pull-4">
+                        <p class="copyright"></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+    <!-- Required jQuery and jQuery UI Javascript references -->
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.12.0.min.js")"></script>
+    <!-- Code to wire up your DatePicker -->
+    <script type="text/javascript">
+        $(function () {
+            // This will make every element with the class "date-picker" into a DatePicker element
+            $('.datepicker').datepicker();
+        })
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

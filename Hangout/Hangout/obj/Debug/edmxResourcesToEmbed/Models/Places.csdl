@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HangOutModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_AspNetUsers" FromRole="AspNetUsers" ToRole="Bookings" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_AspNetUsers" FromRole="AspNetUsers" ToRole="Reviews" />
+    <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserInfo_AspNetUsers" FromRole="AspNetUsers" ToRole="UserInfo" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceId" Type="Int32" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CheckinDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CheckoutDate" Type="DateTime" Precision="0" />
+    <Property Name="NumberOfChildren" Type="Int32" />
+    <Property Name="NumberOfAdults" Type="Int32" />
+    <Property Name="NumberOfRooms" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Bookings_AspNetUsers" FromRole="Bookings" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Bookings_Place" FromRole="Bookings" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Places" Relationship="Self.FK_Place_City" FromRole="City" ToRole="Place" />
+    <NavigationProperty Name="Transports" Relationship="Self.FK_Transport_City" FromRole="City" ToRole="Transport" />
+    <NavigationProperty Name="Transports1" Relationship="Self.FK_Transport_City1" FromRole="City" ToRole="Transport" />
+  </EntityType>
+  <EntityType Name="Clinic">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Clinic_Place" FromRole="Clinic" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Education_Place" FromRole="Education" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="IsPublic" Type="Boolean" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Hospital_Place" FromRole="Hospital" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="DailyRent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Hotel_Place" FromRole="Hotel" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Laboratory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Laboratory_Place" FromRole="Laboratory" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Pharmacy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Pharmacy_Place" FromRole="Pharmacy" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Place">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OpenTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CloseTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BuildingNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoadName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Town" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_Place" FromRole="Place" ToRole="Bookings" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Place_City" FromRole="Place" ToRole="City" />
+    <NavigationProperty Name="Clinic" Relationship="Self.FK_Clinic_Place" FromRole="Place" ToRole="Clinic" />
+    <NavigationProperty Name="Education" Relationship="Self.FK_Education_Place" FromRole="Place" ToRole="Education" />
+    <NavigationProperty Name="Hospital" Relationship="Self.FK_Hospital_Place" FromRole="Place" ToRole="Hospital" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_Place" FromRole="Place" ToRole="Hotel" />
+    <NavigationProperty Name="Laboratory" Relationship="Self.FK_Laboratory_Place" FromRole="Place" ToRole="Laboratory" />
+    <NavigationProperty Name="Pharmacy" Relationship="Self.FK_Pharmacy_Place" FromRole="Place" ToRole="Pharmacy" />
+    <NavigationProperty Name="PlaceFacilities" Relationship="Self.FK_PlaceFacilities_Place" FromRole="Place" ToRole="PlaceFacilities" />
+    <NavigationProperty Name="RealEstate" Relationship="Self.FK_RealEstate_Place" FromRole="Place" ToRole="RealEstate" />
+    <NavigationProperty Name="Resturant" Relationship="Self.FK_Resturant_Place" FromRole="Place" ToRole="Resturant" />
+    <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Place" FromRole="Place" ToRole="Reviews" />
+    <NavigationProperty Name="Shopping" Relationship="Self.FK_Shopping_Place" FromRole="Place" ToRole="Shopping" />
+  </EntityType>
+  <EntityType Name="PlaceFacility">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceId" Type="Int32" Nullable="false" />
+    <Property Name="FacilityName" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_PlaceFacilities_Place" FromRole="PlaceFacilities" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="RealEstate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_RealEstate_Place" FromRole="RealEstate" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Resturant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RestType" Type="Int32" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Resturant_Place" FromRole="Resturant" ToRole="Place" />
+    <NavigationProperty Name="ResturantType" Relationship="Self.FK_Resturant_ResturantType" FromRole="Resturant" ToRole="ResturantType" />
+  </EntityType>
+  <EntityType Name="ResturantType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Resturants" Relationship="Self.FK_Resturant_ResturantType" FromRole="ResturantType" ToRole="Resturant" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlaceId" Type="Int32" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Rating" Type="Int32" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ParentId" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Reviews_AspNetUsers" FromRole="Reviews" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Reviews_Place" FromRole="Reviews" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Shopping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Place" Relationship="Self.FK_Shopping_Place" FromRole="Shopping" ToRole="Place" />
+  </EntityType>
+  <EntityType Name="Transport">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransType" Type="Int32" Nullable="false" />
+    <Property Name="DepartureFrom" Type="Int32" Nullable="false" />
+    <Property Name="DepartureTo" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Transport_City" FromRole="Transport" ToRole="City" />
+    <NavigationProperty Name="City1" Relationship="Self.FK_Transport_City1" FromRole="Transport" ToRole="City" />
+    <NavigationProperty Name="TransportType" Relationship="Self.FK_Transport_TransportType" FromRole="Transport" ToRole="TransportType" />
+  </EntityType>
+  <EntityType Name="TransportType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Transports" Relationship="Self.FK_Transport_TransportType" FromRole="TransportType" ToRole="Transport" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AddressLine3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_UserInfo_AspNetUsers" FromRole="UserInfo" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bookings_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Bookings" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bookings">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reviews_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfo_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserInfo">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bookings_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Bookings" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bookings">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Place_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Place" Type="Self.Place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Place">
+        <PropertyRef Name="Town" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="DepartureFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_City1">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="DepartureTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Clinic_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Clinic" Type="Self.Clinic" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Clinic">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Education_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Education" Type="Self.Education" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hospital_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Hospital" Type="Self.Hospital" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hospital">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hotel_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Laboratory" Type="Self.Laboratory" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Laboratory">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pharmacy_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pharmacy" Type="Self.Pharmacy" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pharmacy">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlaceFacilities_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PlaceFacilities" Type="Self.PlaceFacility" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PlaceFacilities">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RealEstate_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1" />
+    <End Role="RealEstate" Type="Self.RealEstate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RealEstate">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resturant_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Resturant" Type="Self.Resturant" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resturant">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reviews_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reviews">
+        <PropertyRef Name="PlaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shopping_Place">
+    <End Role="Place" Type="Self.Place" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Shopping" Type="Self.Shopping" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Place">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shopping">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resturant_ResturantType">
+    <End Role="ResturantType" Type="Self.ResturantType" Multiplicity="0..1" />
+    <End Role="Resturant" Type="Self.Resturant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResturantType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Resturant">
+        <PropertyRef Name="RestType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transport_TransportType">
+    <End Role="TransportType" Type="Self.TransportType" Multiplicity="1" />
+    <End Role="Transport" Type="Self.Transport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransportType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transport">
+        <PropertyRef Name="TransType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="HangOutEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="Clinics" EntityType="Self.Clinic" />
+    <EntitySet Name="Educations" EntityType="Self.Education" />
+    <EntitySet Name="Hospitals" EntityType="Self.Hospital" />
+    <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+    <EntitySet Name="Laboratories" EntityType="Self.Laboratory" />
+    <EntitySet Name="Pharmacies" EntityType="Self.Pharmacy" />
+    <EntitySet Name="Places" EntityType="Self.Place" />
+    <EntitySet Name="PlaceFacilities" EntityType="Self.PlaceFacility" />
+    <EntitySet Name="RealEstates" EntityType="Self.RealEstate" />
+    <EntitySet Name="Resturants" EntityType="Self.Resturant" />
+    <EntitySet Name="ResturantTypes" EntityType="Self.ResturantType" />
+    <EntitySet Name="Reviews" EntityType="Self.Review" />
+    <EntitySet Name="Shoppings" EntityType="Self.Shopping" />
+    <EntitySet Name="Transports" EntityType="Self.Transport" />
+    <EntitySet Name="TransportTypes" EntityType="Self.TransportType" />
+    <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bookings_AspNetUsers" Association="Self.FK_Bookings_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Bookings" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reviews_AspNetUsers" Association="Self.FK_Reviews_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfo_AspNetUsers" Association="Self.FK_UserInfo_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="UserInfo" EntitySet="UserInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bookings_Place" Association="Self.FK_Bookings_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Bookings" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Place_City" Association="Self.FK_Place_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Place" EntitySet="Places" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_City" Association="Self.FK_Transport_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_City1" Association="Self.FK_Transport_City1">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Clinic_Place" Association="Self.FK_Clinic_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Clinic" EntitySet="Clinics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Education_Place" Association="Self.FK_Education_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Education" EntitySet="Educations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hospital_Place" Association="Self.FK_Hospital_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Hospital" EntitySet="Hospitals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hotel_Place" Association="Self.FK_Hotel_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Hotel" EntitySet="Hotels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Place" Association="Self.FK_Laboratory_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Laboratory" EntitySet="Laboratories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pharmacy_Place" Association="Self.FK_Pharmacy_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Pharmacy" EntitySet="Pharmacies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlaceFacilities_Place" Association="Self.FK_PlaceFacilities_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="PlaceFacilities" EntitySet="PlaceFacilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RealEstate_Place" Association="Self.FK_RealEstate_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="RealEstate" EntitySet="RealEstates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resturant_Place" Association="Self.FK_Resturant_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Resturant" EntitySet="Resturants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reviews_Place" Association="Self.FK_Reviews_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Reviews" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shopping_Place" Association="Self.FK_Shopping_Place">
+      <End Role="Place" EntitySet="Places" />
+      <End Role="Shopping" EntitySet="Shoppings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resturant_ResturantType" Association="Self.FK_Resturant_ResturantType">
+      <End Role="ResturantType" EntitySet="ResturantTypes" />
+      <End Role="Resturant" EntitySet="Resturants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transport_TransportType" Association="Self.FK_Transport_TransportType">
+      <End Role="TransportType" EntitySet="TransportTypes" />
+      <End Role="Transport" EntitySet="Transports" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
